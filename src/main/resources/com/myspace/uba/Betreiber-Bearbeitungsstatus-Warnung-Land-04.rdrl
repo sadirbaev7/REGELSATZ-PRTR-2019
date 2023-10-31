@@ -1,0 +1,14 @@
+package com.myspace.uba;
+
+import java.lang.Number;
+import com.av360.bube.prtr.presentation.model.rume.KpTeilergebnisDto;
+
+rule "Betreiber-Bearbeitungsstatus-Warnung-Land-04" extends "Betreiber-Bearbeitungsstatus-Warnung"
+	dialect "mvel"
+	agenda-group "KOMPLEXPRUEFUNG_04_BETREIBER"
+	enabled true
+	when
+		teilergebnis : KpTeilergebnisDto( )
+	then
+		teilergebnis.addRegelergebnisWarnung( "Unbearbeiteter Bericht", drools.getRule().getName(), "Der Bericht wurde nicht bearbeitet." );
+end

@@ -1,0 +1,12 @@
+package com.myspace.uba;
+
+import java.lang.Number;
+import com.av360.bube.prtr.presentation.model.RumeUploadDto;
+
+rule "Betreiber-Bearbeitungsstatus-Warnung"
+	dialect "mvel"
+	enabled true
+	when
+		RumeUploadDto( bericht != null , bericht.bearbeitungsstatus != null , bericht.bearbeitungsstatus.status != null , bericht.bearbeitungsstatus.status.schluessel in ( "00" ) )
+	then
+end

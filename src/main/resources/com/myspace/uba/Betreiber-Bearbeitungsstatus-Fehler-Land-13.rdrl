@@ -1,0 +1,14 @@
+package com.myspace.uba;
+
+import java.lang.Number;
+import com.av360.bube.prtr.presentation.model.rume.KpTeilergebnisDto;
+
+rule "Betreiber-Bearbeitungsstatus-Fehler-Land-13" extends "Betreiber-Bearbeitungsstatus-Fehler"
+	dialect "mvel"
+	agenda-group "KOMPLEXPRUEFUNG_13_BETREIBER"
+	enabled true
+	when
+		teilergebnis : KpTeilergebnisDto( )
+	then
+		teilergebnis.addRegelergebnisFehler( "Fehlerhafter Bearbeitungsstatus", drools.getRule().getName(), "Der Bearbeitungsstatus ist inkorrekt." );
+end

@@ -1,0 +1,14 @@
+package com.myspace.uba;
+
+import java.lang.Number;
+import com.av360.bube.prtr.presentation.model.rume.KpTeilergebnisDto;
+
+rule "Behoerde-Bearbeitungsstatus-Warnung-Vorjahr-Land-12" extends "Behoerde-Bearbeitungsstatus-Warnung-Vorjahr"
+	dialect "mvel"
+	enabled true
+	agenda-group "KOMPLEXPRUEFUNG_12_BEHOERDE"
+	when
+		kpte : KpTeilergebnisDto( )
+	then
+		kpte.addRegelergebnisWarnung( "Bearbeitungsstatus weicht vom Vorjahr stark ab", drools.getRule().getName(), "Der Bearbeitungsstatus des aktuellen Berichtes weicht vom Bearbeitungsstatus des Vorjahres stark ab." );
+end
